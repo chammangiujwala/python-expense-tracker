@@ -6,7 +6,6 @@ import matplotlib.pyplot as plt
 
 USERS_FILE = "users.csv"
 
-# Ensure users file exists
 if not os.path.exists(USERS_FILE):
     pd.DataFrame(columns=["Username", "Password"]).to_csv(USERS_FILE, index=False)
 
@@ -31,7 +30,6 @@ def signup():
     users = pd.concat([users, new_user], ignore_index=True)
     users.to_csv(USERS_FILE, index=False)
 
-    # Create personal expense file
     user_file = f"{username}_expenses.csv"
     pd.DataFrame(columns=["Date", "Category", "Amount", "Note"]).to_csv(user_file, index=False)
 
@@ -67,7 +65,6 @@ def load_user_data(username):
 def save_data(df, file):
     df.to_csv(file, index=False)
 
-# -------- Expense Tracker Core -------- #
 def add_expense(df, file):
     amount = float(input("Enter amount: "))
     category = input("Enter category (food, travel, bills, etc): ")
@@ -149,7 +146,6 @@ def main_menu(username):
         else:
             print("Invalid choice.\n")
 
-# -------- Entry Point -------- #
 def start():
     while True:
         print("\n===== WELCOME TO EXPENSE TRACKER =====")
@@ -172,4 +168,5 @@ def start():
             print("Invalid input. Try again.")
 
 if __name__ == "__main__":
+
     start()
